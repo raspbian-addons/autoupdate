@@ -4,7 +4,7 @@
 # This script should be run from the 'autoupdate' folder on the repo-hosting VM.
 
 # Check for updates
-echo "Checking for updates..."
+echo "Checking for script updates..."
 localhash="$(git rev-parse HEAD)"
 latesthash="$(git ls-remote https://github.com/raspbian-addons/autoupdate.git HEAD | awk '{print $1}')"
 if [ "$localhash" != "$latesthash" ] && [ ! -z "$latesthash" ] && [ ! -z "$localhash" ];then
