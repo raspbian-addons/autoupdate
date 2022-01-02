@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Core functions
+source api
+TOKENSCRIPT="/root/token.sh"
+if [ ! -f $TOKENSCRIPT ]; then
+    error "$TOKENSCRIPT couldn't be found. Exiting."
+fi
+source $TOKENSCRIPT
+
 status "Updating goreleaser."
 GORELEASER_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/goreleaser/goreleaser/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
 GORELEASER_DATAFILE="$HOME/dlfiles-data/goreleaser.txt"
