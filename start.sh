@@ -33,6 +33,7 @@ sudo dpkg --add-architecture armhf
 
 # check/download each package
 for script in `ls scripts`; do
+    source api
     status $script
     chmod +x scripts/$script
     bash scripts/$script || error "Execution of $script failed!"
