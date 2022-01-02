@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Core functions
+source api
+TOKENSCRIPT="/root/token.sh"
+if [ ! -f $TOKENSCRIPT ]; then
+    error "$TOKENSCRIPT couldn't be found. Exiting."
+fi
+source $TOKENSCRIPT
+
 status "Updating codium."
 CODIUM_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/VSCodium/VSCodium/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
 CODIUM_DATAFILE="$HOME/dlfiles-data/codium.txt"
