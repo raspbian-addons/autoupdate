@@ -17,7 +17,7 @@ else
 fi
 
 # Core functions
-source api || error "failed to source api"
+source api.txt || error "failed to source api"
 
 TOKENSCRIPT="/root/token.sh"
 if [ ! -f $TOKENSCRIPT ]; then
@@ -33,7 +33,7 @@ sudo dpkg --add-architecture armhf
 
 # check/download each package
 for script in `ls scripts`; do
-    source api
+    source api.txt
     status $script
     chmod +x scripts/$script
     bash scripts/$script || error "Execution of $script failed!"
