@@ -19,13 +19,13 @@ fi
 LOVSPOTIFY_CURRENT="$(cat ${LOVSPOTIFY_DATAFILE})"
 if [ "$LOVSPOTIFY_CURRENT" != "$LOVSPOTIFY_API" ]; then
     status "lovspotify isn't up to date. updating now..."
-    if [ ! -f "/etc/apt/sources.list.d/spocon.list" ]; then
+    if [ ! -f "/etc/apt/sources.list.d/lovspotify.list" ]; then
 	      echo "spocon.list does not exist. adding repo..."
-  	      echo 'deb http://ppa.launchpad.net/spocon/lovspotify/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/spocon.list
+  	      echo 'deb http://ppa.launchpad.net/spocon/lovspotify/ubuntu bionic main' | sudo tee /etc/apt/sources.list.d/lovspotify.list
 	      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7DBE8BF06EA39B78
 	      sudo apt update
     fi
-    echo "spocon.list exists. continuing..."
+    echo "lovspotify.list exists. continuing..."
     sudo apt update
     apt download lovspotify:armhf || error "Failed to download lovspotify:armhf"
     apt download lovspotify:arm64 || error "Failed to download lovspotify:arm64"
