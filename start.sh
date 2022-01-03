@@ -33,7 +33,7 @@ sudo dpkg --add-architecture armhf
 # check/download each package
 for script in `ls scripts`; do
     chmod +x scripts/$script
-    bash scripts/$script || error "Execution of $script failed!"
+    bash scripts/$script || red "Execution of $script failed!"
 done
 
 status "Writing packages."
