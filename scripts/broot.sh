@@ -36,6 +36,7 @@ Description: A new way to see and navigate directory trees
 Homepage: https://dystroy.org/broot/
 Bugs: https://github.com/Canop/broot/issues" > deb-base/DEBIAN/control || error "Failed to make control file for broot"
     chmod 755 deb-base/DEBIAN/*
+    chmod 755 deb-base/DEBIAN
     dpkg-deb --build deb-base/ ../broot_${BROOT_API}_armhf.deb || error "failed to create broot deb file (armhf)!"
     cd ../ && rm -rf broot-tmp
     #wget https://packages.azlux.fr/debian/pool/main/b/broot/broot_${BROOT_API}_armhf.deb -O broot_${BROOT_API}_armhf.deb || error "Failed to download broot:armhf!"
