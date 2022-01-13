@@ -9,7 +9,7 @@ fi
 source $TOKENSCRIPT
 
 status "Updating papirus-icon-theme."
-PICONTHEME_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/spocon/papirus-icon-theme/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
+PICONTHEME_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/PapirusDevelopmentTeam/papirus-icon-theme/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
 PICONTHEME_DATAFILE="$HOME/dlfiles-data/papirus-icon-theme.txt"
 if [ ! -f "$PICONTHEME_DATAFILE" ]; then
     status "$PICONTHEME_DATAFILE does not exist."
