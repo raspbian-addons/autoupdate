@@ -19,7 +19,7 @@ fi
 TURBOWARP_CURRENT="$(cat ${TURBOWARP_DATAFILE})"
 if [ "${TURBOWARP_CURRENT}" != "${TURBOWARP_API}" ]; then
     status "turbowarp-desktop isn't up to date. updating now..."
-    wget https://github.com/TurboWarp/desktop/releases/download/v${TURBOWARP_API}/TurboWarp-linux-arm64-{TURBOWARP_API}.deb -O turbowarp-desktop_${TURBOWARP_API}_arm64.deb || error "Failed to download turbowarp-desktop:arm64"
+    wget https://github.com/TurboWarp/desktop/releases/download/v${TURBOWARP_API}/TurboWarp-linux-arm64-${TURBOWARP_API}.deb -O turbowarp-desktop_${TURBOWARP_API}_arm64.deb || error "Failed to download turbowarp-desktop:arm64"
     wget https://github.com/TurboWarp/desktop/releases/download/v${TURBOWARP_API}/TurboWarp-linux-armv7l-${TURBOWARP_API}.deb -O turbowarp-desktop_${TURBOWARP_API}_armhf.deb || error "Failed to download turbowarp-desktop:armhf"
     mv turbowarp-desktop* $PKGDIR
     echo ${TURBOWARP_API} > ${TURBOWARP_DATAFILE}
