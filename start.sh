@@ -37,11 +37,11 @@ for script in `ls scripts`; do
 done
 
 status "Writing packages."
-cd /usr/share/caddy/debian
+cd /root/raspbian-addons/debian
 for new_pkg in `ls pkgs_incoming`; do
     status $new_pkg
     #reprepro_expect
-    /root/reprepro.exp -- --noguessgpgtty -Vb /usr/share/caddy/debian/ includedeb precise /usr/share/caddy/debian/pkgs_incoming/$new_pkg
+    /root/reprepro.exp -- --noguessgpgtty -Vb /root/raspbian-addons/debian/ includedeb precise /root/raspbian-addons/debian/pkgs_incoming/$new_pkg
     if [ $? != 0 ]; then
         red "Import of $new_pkg failed!"
     else
