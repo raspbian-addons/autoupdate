@@ -23,6 +23,7 @@ if [ "${MINIKUBE_CURRENT}" != "${MINIKUBE_API}" ]; then
     wget https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_API}/minikube_${MINIKUBE_API}-0_arm64.deb || error "Failed to download minikube:arm64"
     wget https://github.com/kubernetes/minikube/releases/download/v${MINIKUBE_API}/minikube_${MINIKUBE_API}-0_armhf.deb || error "Failed to download minikube:armhf!"
     mv minikube* $PKGDIR
+    mv docker-machine-driver-kvm2* $PKGDIR
     echo ${MINIKUBE_API} > ${MINIKUBE_DATAFILE}
     green "minikube downloaded successfully."
 fi
