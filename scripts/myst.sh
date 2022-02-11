@@ -19,18 +19,16 @@ fi
 MYST_CURRENT="$(cat ${MYST_DATAFILE})"
 if [ "$MYST_CURRENT" != "$MYST_API" ]; then
     status "myst isn't up to date. updating now..."
-    curl -s --header "Authorization: token $token" https://api.github.com/repos/mysteriumnetwork/node/releases/latest \
-      | grep browser_download_url \
-      | grep 'armhf.deb"' \
-      | cut -d '"' -f 4 \
-      | xargs -n 1 curl -L -o myst_${MYST_API}_armhf.deb || error "Failed to download myst:armhf"
-
-    curl -s --header "Authorization: token $token" https://api.github.com/repos/mysteriumnetwork/node/releases/latest \
-      | grep browser_download_url \
-      | grep 'arm64.deb"' \
-      | cut -d '"' -f 4 \
-      | xargs -n 1 curl -L -o myst_${MYST_API}_arm64.deb || error "Failed to download myst:arm64"
-
+    if [ ! -f "/etc/apt/sources.list.d/myst.list" ]; then
+	      echo "myst.list does not exist. adding repo..."
+  	      echo "deb https://ppa.launchpadcontent.net/mysteriumnetwork/node/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/myst.list
+	      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ECCB6A56B22C536D
+	      sudo apt update
+    fi
+    echo "myst.list exists. continuing..."
+    sudo apt update
+    apt download myst:armhf || error "Failed to download myst:armhf!"
+    apt download myst:arm64 || error "Failed to download myst:arm64!"
     mv myst* $PKGDIR
     echo $MYST_API > $MYST_DATAFILE
     green "myst downloaded successfully."
