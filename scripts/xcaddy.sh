@@ -10,7 +10,7 @@ source $TOKENSCRIPT
 
 status "Updating xcaddy."
 XCADDY_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/caddyserver/xcaddy/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
-XCADDY_DATAFILE="$HOME/dlfiles-data/caddy.txt"
+XCADDY_DATAFILE="$HOME/dlfiles-data/xcaddy.txt"
 if [ ! -f "$XCADDY_DATAFILE" ]; then
     status "$XCADDY_DATAFILE does not exist."
     status "Grabbing the latest release from GitHub."
