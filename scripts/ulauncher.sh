@@ -9,7 +9,7 @@ fi
 source $TOKENSCRIPT
 
 status "Updating ulauncher."
-ULAUNCHER_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/Ulauncher/Ulaunche/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
+ULAUNCHER_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/Ulauncher/Ulauncher/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
 ULAUNCHER_DATAFILE="$HOME/dlfiles-data/ulauncher.txt"
 if [ ! -f "$ULAUNCHER_DATAFILE" ]; then
     status "$ULAUNCHER_DATAFILE does not exist."
@@ -19,7 +19,7 @@ fi
 ULAUNCHER_CURRENT="$(cat ${ULAUNCHER_DATAFILE})"
 if [ "$ULAUNCHER_CURRENT" != "$ULAUNCHER_API" ]; then
     status "ulauncher isn't up to date. updating now..."
-    curl -s --header "Authorization: token $token" https://api.github.com/repos/Ulauncher/Ulaunche/releases/latest \
+    curl -s --header "Authorization: token $token" https://api.github.com/repos/Ulauncher/Ulauncher/releases/latest \
       | grep browser_download_url \
       | grep 'all.deb"' \
       | cut -d '"' -f 4 \
