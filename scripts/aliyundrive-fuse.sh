@@ -9,30 +9,30 @@ fi
 source $TOKENSCRIPT
 
 status "Updating aliyundrive-fuse."
-ALIYUNDRIVE-FUSE_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/messense/aliyundrive-fuse/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
-ALIYUNDRIVE-FUSE_DATAFILE="$HOME/dlfiles-data/aliyundrive-fuse.txt"
-if [ ! -f "$ALIYUNDRIVE-FUSE_DATAFILE" ]; then
-    status "$ALIYUNDRIVE-FUSE_DATAFILE does not exist."
+ALIYUNDRIVEFUSE_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/messense/aliyundrive-fuse/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
+ALIYUNDRIVEFUSE_DATAFILE="$HOME/dlfiles-data/aliyundrive-fuse.txt"
+if [ ! -f "$ALIYUNDRIVEFUSE_DATAFILE" ]; then
+    status "$ALIYUNDRIVEFUSE_DATAFILE does not exist."
     status "Grabbing the latest release from GitHub."
-    echo $ALIYUNDRIVE-FUSE_API > $ALIYUNDRIVE-FUSE_DATAFILE
+    echo $ALIYUNDRIVEFUSE_API > $ALIYUNDRIVEFUSE_DATAFILE
 fi
-ALIYUNDRIVE-FUSE_CURRENT="$(cat ${ALIYUNDRIVE-FUSE_DATAFILE})"
-if [ "$ALIYUNDRIVE-FUSE_CURRENT" != "$ALIYUNDRIVE-FUSE_API" ]; then
+ALIYUNDRIVEFUSE_CURRENT="$(cat ${ALIYUNDRIVEFUSE_DATAFILE})"
+if [ "$ALIYUNDRIVEFUSE_CURRENT" != "$ALIYUNDRIVEFUSE_API" ]; then
     status "aliyundrive-fuse isn't up to date. updating now..."
     curl -s --header "Authorization: token $token" https://api.github.com/repos/messense/aliyundrive-fuse/releases/latest \
       | grep browser_download_url \
       | grep 'arm64.deb"' \
       | cut -d '"' -f 4 \
-      | xargs -n 1 curl -L -o aliyundrive-fuse_${ALIYUNDRIVE-FUSE_API}_arm64.deb || error "Failed to download aliyundrive-fuse:arm64!"
+      | xargs -n 1 curl -L -o aliyundrive-fuse_${ALIYUNDRIVEFUSE_API}_arm64.deb || error "Failed to download aliyundrive-fuse:arm64!"
 
     curl -s --header "Authorization: token $token" https://api.github.com/repos/messense/aliyundrive-fuse/releases/latest \
       | grep browser_download_url \
       | grep 'armhf.deb"' \
       | cut -d '"' -f 4 \
-      | xargs -n 1 curl -L -o aliyundrive-fuse_${ALIYUNDRIVE-FUSE_API}_armhf.deb || error "Failed to download aliyundrive-fuse:armhf!"
+      | xargs -n 1 curl -L -o aliyundrive-fuse_${ALIYUNDRIVEFUSE_API}_armhf.deb || error "Failed to download aliyundrive-fuse:armhf!"
 
     mv aliyundrive-fuse* $PKGDIR
-    echo $ALIYUNDRIVE-FUSE_API > $ALIYUNDRIVE-FUSE_DATAFILE
+    echo $ALIYUNDRIVEFUSE_API > $ALIYUNDRIVEFUSE_DATAFILE
     green "aliyundrive-fuse downloaded successfully."
 fi
 green "aliyundrive-fuse is up to date."
