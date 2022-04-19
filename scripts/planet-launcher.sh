@@ -21,7 +21,7 @@ if [ "$PLANETLAUNCHER_CURRENT" != "$PLANETLAUNCHER_API" ]; then
     status "planet-launcher isn't up to date. updating now..."
     curl -s --header "Authorization: token $token" https://api.github.com/repos/mcpiscript/Planet/releases/latest \
       | grep browser_download_url \
-      | grep 'all.deb"' \
+      | grep '.deb"' \
       | cut -d '"' -f 4 \
       | xargs -n 1 curl -L -o planet-launcher_${PLANETLAUNCHER_API}_all.deb || error "Failed to download planet-launcher:all!"
 
