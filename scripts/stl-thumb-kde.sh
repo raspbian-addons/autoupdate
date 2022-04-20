@@ -10,7 +10,7 @@ source $TOKENSCRIPT
 
 status "Updating stl-thumb-kde."
 STLTHUMBKDE_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/unlimitedbacon/stl-thumb-kde/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
-STLTHUMBKDE_DATAFILE="$HOME/dlfiles-data/fiddle.txt"
+STLTHUMBKDE_DATAFILE="$HOME/dlfiles-data/stl-thumb-kde.txt"
 if [ ! -f "$STLTHUMBKDE_DATAFILE" ]; then
     status "$STLTHUMBKDE_DATAFILE does not exist."
     status "Grabbing the latest release from GitHub."

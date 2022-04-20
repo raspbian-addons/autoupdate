@@ -10,7 +10,7 @@ source $TOKENSCRIPT
 
 status "Updating electron-fiddle."
 ELECTRONFIDDLE_API=`curl -s --header "Authorization: token $token" https://api.github.com/repos/electron/fiddle/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")'`
-ELECTRONFIDDLE_DATAFILE="$HOME/dlfiles-data/fiddle.txt"
+ELECTRONFIDDLE_DATAFILE="$HOME/dlfiles-data/electron-fiddle.txt"
 if [ ! -f "$ELECTRONFIDDLE_DATAFILE" ]; then
     status "$ELECTRONFIDDLE_DATAFILE does not exist."
     status "Grabbing the latest release from GitHub."
