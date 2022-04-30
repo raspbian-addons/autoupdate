@@ -27,6 +27,6 @@ if [ "$ARMCORD_CURRENT" != "$ARMCORD_API" ]; then
 
     mv armcord* $PKGDIR
     echo $ARMCORD_API > $ARMCORD_DATAFILE
-    green "armcord" downloaded successfully."
+    green "armcord downloaded successfully."
 fi
 green "armcord is up to date."
