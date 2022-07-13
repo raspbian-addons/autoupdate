@@ -26,7 +26,7 @@ if [ "$MIN_CURRENT" != "$MIN_API" ]; then
       | xargs -n 1 curl -L -o min_${MIN_API}_arm64.deb || error "Failed to download min:arm64!"
     curl -s --header "Authorization: token $token" https://api.github.com/repos/minbrowser/min/releases/latest \
       | grep browser_download_url \
-      | grep 'armhf.deb"' \
+      | grep 'armv7l.deb"' \
       | cut -d '"' -f 4 \
       | xargs -n 1 curl -L -o min_${MIN_API}_armhf.deb || error "Failed to download min:armhf!"
 
