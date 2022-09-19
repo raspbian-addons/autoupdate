@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Some debs' version names have extensions such as ~rpt1. I have not found a way around this yet, hence why this script works half the time.
+
 # Core functions
 source api
 TOKENSCRIPT="/root/token.sh"
